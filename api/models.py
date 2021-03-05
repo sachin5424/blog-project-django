@@ -8,15 +8,15 @@ class Categories(models.Model):
         return self.Categories_name
 
 
-class Item(models.Model):
-    Item_categories = models.ForeignKey(Categories ,on_delete=models.CASCADE,related_name='item')
-    Item_title = models.CharField(max_length=100)
-    Item_Images = models.ImageField(upload_to='blog-images/')
-    Item_Description = models.TextField()
+class Blog(models.Model):
+    Blog_categories = models.ForeignKey(Categories ,on_delete=models.CASCADE,related_name='item')
+    Blog_title = models.CharField(max_length=100)
+    Blog_Images = models.ImageField(upload_to='blog-images/')
+    Blog_Description = models.TextField()
     is_Active = models.BooleanField(default=False)
     is_Featured = models.BooleanField(default=False)
     def __str__(self):
-        return self.Item_categories.Categories_name
+        return self.Blog_categories.Categories_name
 
 class Verfiy_user(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)

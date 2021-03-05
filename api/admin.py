@@ -1,15 +1,13 @@
 from django.contrib import admin
-from .models import Item,Categories,Verfiy_user
+from .models import Blog,Categories,Verfiy_user
 # Register your models here.
 
 
-@admin.register(Categories)
-class Categories_admin(admin.ModelAdmin):
-    list_display = ['id','Categories_name']
+admin.site.register(Categories)
 
-@admin.register(Item)
+@admin.register(Blog)
 class Categories_admin(admin.ModelAdmin):
-    list_display = ['id','Item_categories','Item_title','is_Active','is_Featured']
+    list_display = ['id','Blog_categories','Blog_title','is_Active','is_Featured']
 
 
 @admin.register(Verfiy_user)

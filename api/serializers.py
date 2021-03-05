@@ -1,10 +1,9 @@
 from rest_framework import serializers
-from .models import Categories,Item
+from .models import Categories,Blog
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 
 class Users_serializer(serializers.ModelSerializer):
-    email = serializers.EmailField(required=True)
     class Meta:
         model= User
         fields=['id', 'first_name','last_name','email','username','password']
@@ -18,6 +17,7 @@ class Users_serializer(serializers.ModelSerializer):
         user.is_active=False
         user.save()
         return user
+
     def validate(self, attrs):
         print(attrs)
         email = attrs['email']
@@ -38,6 +38,12 @@ class Users_serializer(serializers.ModelSerializer):
         # return attrs
 
 
+class User_list_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields=['id', 'first_name','last_name','email','username','password','is_active']
+
+
 class Categories_serializer(serializers.ModelSerializer):
     class Meta:
         model = Categories
@@ -51,15 +57,14 @@ class Categories_serializer(serializers.ModelSerializer):
 
 class Item_serializer(serializers.ModelSerializer):
     class Meta:
-        model=Item
-        fields=['id','Item_categories','Item_title','Item_Images','Item_Description','is_Active','is_Featured']
-
+        model=Blog
+        fields=['id','Blog_categories','Blog_title','Blog_Images','Blog_Description','is_Active','is_Featured']
 
 class Item_list_serializer(serializers.ModelSerializer):
-    Item_categories = serializers.StringRelatedField()
+    Blog_categories = serializers.StringRelatedField()
     class Meta:
-        model=Item
-        fields=['id','Item_categories','Item_title','Item_Images','Item_Description','is_Active','is_Featured']
+        model=Blog
+        fields=['id','Blog_categories','Blog_title','Blog_Images','Blog_Description','is_Active','is_Featured']
 
 
 
