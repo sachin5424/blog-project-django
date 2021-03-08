@@ -12,25 +12,30 @@ from rest_framework import permissions
 
 class Users_Create(generics.CreateAPIView):
     queryset = User.objects.all()
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = Users_serializer
 
 class Categories_Create(generics.CreateAPIView):
     queryset = Categories.objects.all()
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = Categories_serializer
 
 class Categories_List(generics.ListAPIView):
     queryset = Categories.objects.all()
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = Categories_serializer
 
 
 class Categories_update_and_delete(generics.RetrieveUpdateDestroyAPIView):
     queryset = Categories.objects.all()
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = Categories_serializer
 
 
 
 class Blog_Create(generics.CreateAPIView):
     queryset = Blog.objects.all()
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = Item_serializer
 
 class Blog_List(generics.ListAPIView):
@@ -40,6 +45,7 @@ class Blog_List(generics.ListAPIView):
 
 class Blog_update_and_delete(generics.RetrieveUpdateDestroyAPIView):
     queryset = Blog.objects.all()
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = Item_serializer
 
 from rest_framework.views import APIView
@@ -79,6 +85,7 @@ def verfiy_user(request):
 
 class User_List(generics.ListAPIView):
     queryset = User.objects.all()
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = User_list_serializer
 
 class HelloView(APIView):
